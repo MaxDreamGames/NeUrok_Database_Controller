@@ -1,0 +1,15 @@
+F:\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\bin\Debug\NeUrok DB Controller.exe.config
+F:\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\bin\Debug\NeUrok DB Controller.exe
+F:\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\bin\Debug\NeUrok DB Controller.pdb
+F:\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok DB Controller.csproj.AssemblyReference.cache
+F:\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok DB Controller.csproj.SuggestedBindingRedirects.cache
+F:\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok_DB_Controller.Properties.Resources.resources
+F:\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok DB Controller.csproj.GenerateResource.cache
+F:\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok DB Controller.csproj.CoreCompileInputs.cache
+F:\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok DB Controller.exe
+F:\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok DB Controller.pdb
+F:\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok_DB_Controller.Menu.resources
+F:\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok_DB_Controller.PrintAllDB.resources
+F:\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok_DB_Controller.SearchForm.resources
+F:\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok_DB_Controller.AddForm.resources
+F:\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok_DB_Controller.ConnectForm.resources
