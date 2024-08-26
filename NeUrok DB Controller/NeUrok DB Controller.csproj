@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Logo-_2_.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MySql.Data, Version=8.2.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -149,8 +152,10 @@
     <None Include="Resources\Logo.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Logo-_2_.ico" />
     <Content Include="Properties\ColorsFile.txt" />
     <Content Include="Resources\ColorsFile.txt" />
+    <None Include="Resources\Logo %282%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,6 +9,8 @@ namespace NeUrok_DB_Controller
 {
     public partial class SearchForm : Form
     {
+        bool isDraging = false;
+        Point startPoint = new Point(0, 0);
         public DatabaseConnector connector;
 
         public DataGridView dgv;
@@ -21,17 +23,62 @@ namespace NeUrok_DB_Controller
             dgv = dataGridView1;
         }
 
+        private void SearchForm_Load(object sender, EventArgs e)
+        {
+            label12.Text = this.Text;
+        }
+
+        private void panel1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (WindowState == FormWindowState.Maximized)
+                WindowState = FormWindowState.Normal;
+            else if (WindowState == FormWindowState.Normal)
+                WindowState = FormWindowState.Maximized;
+        }
+
+        private void minimizeBtn_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            isDraging = true;
+            startPoint = new Point(e.X, e.Y);
+        }
+
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDraging)
+            {
+                Point p = PointToScreen(e.Location);
+                Point delta = new Point(p.X - startPoint.X, p.Y - startPoint.Y);
+                Location = delta;
+                if ((delta.X != 0 || delta.Y != 0) && WindowState == FormWindowState.Maximized)
+                    WindowState = FormWindowState.Normal;
+            }
+        }
+
+        private void panel1_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDraging = false;
+        }
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                const int WS_SIZEBOX = 0x40000;
+
+                var cp = base.CreateParams;
+                cp.Style |= WS_SIZEBOX;
+
+                return cp;
+            }
+        }
+
         private void dataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             SetColoredCells(false);
-        }
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            dataGridView1.DataSource = null;
-
         }
 
         private void searchButton_Click(object sender, EventArgs e)
@@ -112,8 +159,9 @@ namespace NeUrok_DB_Controller
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            this.Hide();
             dataGridView1.DataSource = null;
+            searchCountLabel.Text = string.Empty;
+            this.Hide();
 
         }
 
@@ -174,41 +222,23 @@ namespace NeUrok_DB_Controller
             Colors.currentColor = Colors.Color.NONE;
         }
 
+        private void dataGridView1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r')
+                connector.UpdateDatabaseFromDataGridView((DataTable)dataGridView1.DataSource);
+        }
+
         private void SetColoredCells(bool isChanging = true)
         {
-            string[] lines = ReadFile.Read().Split(';');
-            List<string> newStr = new List<string>();
-            if (ReadFile.Read() == "") return;
-            foreach (string line in lines)
+            foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                // Debug.WriteLine(line);
-                bool isDeleted = false;
-                string[] keyValue = line.Split(',');
-                string[] ids = keyValue[0].Split(':');
-                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+                foreach (DataGridViewCell cell in row.Cells)
                 {
-                    if (dataGridView1.Rows[i].Cells[0].Value.ToString() == ids[0].ToString())
-                    {
-                        dataGridView1.Rows[i].Cells[Convert.ToInt32(ids[1])].Style.BackColor = Colors.colorMatching[keyValue[1]];
-                        newStr.Add(ids[0] + ":" + ids[1] + "," + keyValue[1]);
-                        break;
-                    }
-                    else
-                    {
-                        isDeleted = true;
-                    }
+                    DataTable currentRowsInColorsTable = connector.SqlRequest($"SELECT * FROM colors WHERE userID = {row.Cells[0].Value} AND columnID = {cell.ColumnIndex};");
+                    if (currentRowsInColorsTable != null && currentRowsInColorsTable.Rows.Count > 0)
+                        cell.Style.BackColor = Color.FromName(currentRowsInColorsTable.Rows[0][3].ToString());
                 }
-                if (isDeleted)
-                {
 
-                }
-            }
-            if (isChanging)
-            {
-                string ns = "";
-                foreach (var item in newStr)
-                    ns += item + ";";
-                ReadFile.ReWrite(ns);
             }
         }
 
@@ -217,18 +247,31 @@ namespace NeUrok_DB_Controller
             foreach (DataGridViewCell cell in dataGridView1.SelectedCells)
             {
                 cell.Style.BackColor = color;
-                string address = dataGridView1[0, cell.RowIndex].Value.ToString() + ":" + cell.ColumnIndex;
-                string coloredCell = ReadFile.FindByAddress(address);
-                if (color == Color.White && coloredCell != null)
+                //      string coloredCell = ReadFile.FindByAddress(address);
+                string currentID = dataGridView1.Rows[cell.RowIndex].Cells[0].Value.ToString();
+                if (color == Color.White)
                 {
-                    Console.WriteLine(coloredCell);
-                    ReadFile.RemoveLineFromFile(address + "," + coloredCell.Split(',')[1] + ";");
+                    if (connector.SqlRequest($"SELECT * FROM colors WHERE userID = {currentID} AND columnID = {cell.ColumnIndex};").Rows.Count > 0)
+                    {
+                        connector.SqlRequest($"DELETE FROM colors WHERE userID = {currentID} AND columnID = {cell.ColumnIndex};");
+                    }
+
                 }
-                else if (color != Color.White)
-                    ReadFile.Write(address + "," + Colors.currentColor + ";");
+                else
+                {
+                    if (connector.SqlRequest($"SELECT * FROM colors WHERE userID = {currentID} AND columnID = {cell.ColumnIndex};").Rows.Count == 0)
+                    {
+                        string req = $"INSERT INTO colors (`ID`,`userID`,`columnID`,`color`) VALUES ({Convert.ToInt32(connector.SqlRequest("SELECT COUNT(ID) FROM colors;").Rows[0][0]) + 1}, {currentID}, {cell.ColumnIndex}, '{color.Name}');";
+                        connector.SqlRequest(req);
+                        Console.WriteLine(req);
+                    }
+                    else
+                    {
+                        connector.SqlRequest($"UPDATE colors SET color = '{color.Name}' WHERE userID = {currentID} AND columnID = {cell.ColumnIndex};");
+                    }
+                }
             }
         }
-
 
     }
 }

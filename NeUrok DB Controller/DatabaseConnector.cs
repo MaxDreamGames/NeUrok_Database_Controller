@@ -28,14 +28,20 @@ namespace NeUrok_DB_Controller
 
         public DataTable SqlRequest(string request)
         {
-            MySqlConnection sqlConnection1 = Connect();
-            MySqlCommand cmd = new MySqlCommand(request, sqlConnection1);
-            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            sqlConnection1.Close();
-            return dt;
-
+            try
+            {
+                MySqlConnection sqlConnection1 = Connect();
+                MySqlCommand cmd = new MySqlCommand(request, sqlConnection1);
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                sqlConnection1.Close();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public void SetServerString(string server) { this.server = server; }
@@ -69,7 +75,24 @@ namespace NeUrok_DB_Controller
             }
         }
 
-
+        public void Format(DataTable dt)
+        {
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string date = dt.Rows[i][2].ToString();
+                string[] splitedDays = date.Split('.');
+                if (splitedDays[1].Length == 1 || splitedDays[2].Length == 1)
+                {
+                    string newDateString = splitedDays[0];
+                    if (splitedDays[1].Length == 1) newDateString += "." + "0" + splitedDays[1];
+                    else newDateString += "." + splitedDays[1];
+                    if (splitedDays[2].Length == 1) newDateString += "." + "0" + splitedDays[2];
+                    else newDateString += "." + splitedDays[2];
+                    dt.Rows[i][2] = newDateString;
+                    UpdateDatabaseFromDataGridView(dt);
+                }
+            }
+        }
 
     }
 }

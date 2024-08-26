@@ -18,4 +18,25 @@ F:\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\bin\Debug\Syste
 F:\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\bin\Debug\System.Numerics.Vectors.dll
 F:\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\bin\Debug\System.Buffers.dll
 F:\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\bin\Debug\MySql.Data.xml
-F:\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok DB Controller.csproj.CopyComplete
+F:\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok D.DC19B98A.Up2Date
+F:\Computer Science\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\bin\Debug\NeUrok DB Controller.exe.config
+F:\Computer Science\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\bin\Debug\NeUrok DB Controller.exe
+F:\Computer Science\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\bin\Debug\NeUrok DB Controller.pdb
+F:\Computer Science\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\bin\Debug\MySql.Data.dll
+F:\Computer Science\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\bin\Debug\System.Memory.dll
+F:\Computer Science\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\bin\Debug\System.Threading.Tasks.Extensions.dll
+F:\Computer Science\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\bin\Debug\System.Numerics.Vectors.dll
+F:\Computer Science\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\bin\Debug\System.Buffers.dll
+F:\Computer Science\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\bin\Debug\MySql.Data.xml
+F:\Computer Science\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok DB Controller.csproj.AssemblyReference.cache
+F:\Computer Science\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok_DB_Controller.AddForm.resources
+F:\Computer Science\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok_DB_Controller.ConnectForm.resources
+F:\Computer Science\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok_DB_Controller.PrintAllDB.resources
+F:\Computer Science\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok_DB_Controller.Menu.resources
+F:\Computer Science\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok_DB_Controller.Properties.Resources.resources
+F:\Computer Science\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok_DB_Controller.SearchForm.resources
+F:\Computer Science\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok DB Controller.csproj.GenerateResource.cache
+F:\Computer Science\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok DB Controller.csproj.CoreCompileInputs.cache
+F:\Computer Science\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok D.DC19B98A.Up2Date
+F:\Computer Science\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok DB Controller.exe
+F:\Computer Science\Programming\Apps\C#\NeUrok DB Controller\NeUrok DB Controller\obj\Debug\NeUrok DB Controller.pdb

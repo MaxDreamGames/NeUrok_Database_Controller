@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace NeUrok_DB_Controller
 {
     public partial class AddForm : Form
     {
+        bool isDraging = false;
+        Point startPoint = new Point(0, 0);
         public DatabaseConnector connector;
         public static int id = 1;
         public bool isMinimise;
@@ -17,7 +20,56 @@ namespace NeUrok_DB_Controller
 
         private void AddForm_Load(object sender, EventArgs e)
         {
+            label12.Text = this.Text;
             IdText.Text = (connector.SqlRequest("SELECT * FROM Clients").Rows.Count + 1).ToString();
+        }
+
+        private void panel1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (WindowState == FormWindowState.Maximized)
+                WindowState = FormWindowState.Normal;
+            else if (WindowState == FormWindowState.Normal)
+                WindowState = FormWindowState.Maximized;
+        }
+
+        private void minimizeBtn_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            isDraging = true;
+            startPoint = new Point(e.X, e.Y);
+        }
+
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDraging)
+            {
+                Point p = PointToScreen(e.Location);
+                Point delta = new Point(p.X - startPoint.X, p.Y - startPoint.Y);
+                Location = delta;
+                if ((delta.X != 0 || delta.Y != 0) && WindowState == FormWindowState.Maximized)
+                    WindowState = FormWindowState.Normal;
+            }
+        }
+
+        private void panel1_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDraging = false;
+        }
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                const int WS_SIZEBOX = 0x40000;
+
+                var cp = base.CreateParams;
+                cp.Style |= WS_SIZEBOX;
+
+                return cp;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
